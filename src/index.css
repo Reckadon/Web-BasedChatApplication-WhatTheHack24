@@ -43,14 +43,60 @@ button {
 	font-family: inherit;
 	background-color: #1a1a1a;
 	cursor: pointer;
-	transition: border-color 0.25s;
+	transition: border-color 0.2s;
 }
 button:hover {
-	border-color: #646cff;
+	border-color: white;
 }
 button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
+}
+
+em {
+	font-style: italic;
+	background: #121fcf;
+	background: linear-gradient(120deg, #b3deff 0%, #3366ff 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+	background-size: 500% auto;
+	animation: em-text 5s ease infinite;
+}
+
+@-webkit-keyframes em-text {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@-moz-keyframes em-text {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes em-text {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 @media (prefers-color-scheme: light) {
