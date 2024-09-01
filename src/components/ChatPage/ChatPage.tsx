@@ -1,7 +1,8 @@
-import { User } from "firebase/auth";
+import "./ChatPage.css";
+import { AppUser } from "../../types/AppUser";
 
-const ChatPage = ({ user }: { user: User }) => {
-	return <>Authenticated! Welcome {user.displayName}</>;
+const ChatPage = ({ user }: { user: AppUser }) => {
+	return <div className="chat-container">Authenticated! Welcome {user.username}</div>;
 };
 
 export default ChatPage;
