@@ -1,0 +1,62 @@
+div.sidebar {
+	height: 100%;
+	flex-grow: 1;
+	border-right: 1px dashed #bbbbbb;
+	display: flex;
+	flex-direction: column;
+
+	.search-or-make {
+		padding: 10px;
+		width: 100%;
+		background-color: #121212;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.2rem;
+
+		em {
+			padding-right: 10px;
+		}
+
+		input {
+			background-color: #242424;
+			border: none;
+			padding: 5px 10px;
+			flex-grow: 1;
+
+			&:focus {
+				outline: 1px solid white;
+			}
+		}
+	}
+
+	.chats-list {
+		width: 100%;
+		flex-grow: 1;
+	}
+
+	.profile {
+		padding: 10px;
+		width: 100%;
+		background-color: #121212;
+
+		span {
+			cursor: pointer;
+			position: relative;
+
+			&:hover {
+				text-decoration: underline;
+
+				&::after {
+					position: absolute;
+					font-size: 11px;
+					top: -80%;
+					right: 0;
+					width: min-content;
+					text-wrap: nowrap;
+					content: "click to copy";
+				}
+			}
+		}
+	}
+}
