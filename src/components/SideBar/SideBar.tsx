@@ -1,14 +1,60 @@
+import { useEffect, useState } from "react";
 import { AppUser } from "../../types/AppUser";
 import "./SideBar.css";
+import { findByUsername, getChatsList, startChatWith } from "../../utils/firestoreUtils";
+import { Chat } from "../../types/ChatList";
 
 const SideBar = ({ user }: { user: AppUser }) => {
+	const [search, setSearch] = useState<string>("");
+	const [searchPlaceholder, setSearchPlaceholder] = useState("search for a user");
+	const [chats, setChats] = useState<Chat[]>();
+
+	useEffect(() => {
+		getChatsList(user.doc_id).then(data => {
+			setChats(data);
+		});
+	}, []);
+
+	const handleUserSearch = async () => {
+		if (search == "") {
+			alert("empty search field!");
+			return;
+		}
+		setSearch("");
+		setSearchPlaceholder("checking user");
+		const foundUser = await findByUsername(search);
+		if (foundUser) {
+			setSearchPlaceholder("making chat room");
+			await startChatWith(user, foundUser);
+			setSearchPlaceholder("chat created");
+			setTimeout(() => setSearchPlaceholder("search for a user"), 2000);
+		} else {
+			setSearchPlaceholder("user not found");
+			setTimeout(() => setSearchPlaceholder("search for a user"), 2000);
+		}
+	};
 	return (
 		<div className="sidebar">
 			<div className="search-or-make">
 				<em>DevChat</em>
-				<input placeholder="search for a user"></input>
+				<input
+					value={search}
+					placeholder={searchPlaceholder}
+					onChange={e => setSearch(e.target.value)}
+					onKeyDown={e => {
+						if (e.key === "Enter") handleUserSearch();
+					}}
+				></input>
 			</div>
-			<div className="chats-list"></div>
+			<div className="chats-list">
+				{chats?.map(chat => (
+					<div className="chat-item">
+						{chat.users.map(user => (
+							<div>{user}</div>
+						))}
+					</div>
+				))}
+			</div>
 			<div className="profile">
 				<span onClick={() => navigator.clipboard.writeText(user.username)}>{user.username}</span>
 			</div>
