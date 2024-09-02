@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# Web-based Chat Application - DevChat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### By Romit Mohane - developed during the Technical Council's `What The Hack` hackathon.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Project Overview
 
-## Expanding the ESLint configuration
+This is a simple web-based chat application built using `React.js` and `Firebase`. Allowing user authentication, search and live chat.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Features
 
-- Configure the top-level `parserOptions` property like this:
+- User Authentication
+- Search Users
+- Real-time Messaging
+- Clean and minimal design, inspired by the terminal (hence the 'Dev' in 'DevChat')
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Tech Stack
+
+Build Tool: `Vite.js`
+Frontend: `React.js` with `Typescript` (`sass` for stylesheets)
+Backend: **Firebase** Firestore and Authentication
+Database: **Firebase** Firestore
+
+### File Structure
+
+Since the app is setup using [`vite`](https://vitejs.dev/), with plugins for `react` and `typescript`, the file structure is similar to a react project. typescript config files are an addition.  
+The hierarchy is as:
+
+```text
+├── public/
+├── src/
+|   └── components/     (has components segregated in different files and folders)
+|   └── types/          (has typescript interfaces for `AppUser`, `Chat` and `ChatMessage`)
+|   └── utils/          (has firestore utility code)
+│   └── main and App react files
+└── package.json
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+React components which have accompanying css are placed in their own folders along with their css.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Hosting
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+_Not yet publically hosted, can be accessed from the college network_
