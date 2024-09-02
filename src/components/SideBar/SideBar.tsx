@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AppUser } from "../../types/AppUser";
 import "./SideBar.css";
 import { findByUsername, getChatsList, startChatWith } from "../../utils/firestoreUtils";
-import { Chat } from "../../types/ChatList";
+import { Chat } from "../../types/Chat";
 
 const SideBar = ({ user, onChangeChat }: { user: AppUser; onChangeChat: (chat: Chat) => void }) => {
 	const [search, setSearch] = useState<string>("");
@@ -33,6 +33,7 @@ const SideBar = ({ user, onChangeChat }: { user: AppUser; onChangeChat: (chat: C
 			setTimeout(() => setSearchPlaceholder("search for a user"), 2000);
 		}
 	};
+
 	return (
 		<div className="sidebar">
 			<div className="search-or-make">

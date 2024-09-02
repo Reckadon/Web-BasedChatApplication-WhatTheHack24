@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../main";
 import { AppUser } from "../types/AppUser";
-import { Chat } from "../types/ChatList";
+import { Chat } from "../types/Chat";
 
 export const findByEmail = async (user: User): Promise<AppUser | false> => {
 	const querySnapshot = await getDocs(collection(db, "users"));
@@ -51,13 +51,8 @@ export const getChatsList = async (userDocID: string): Promise<Chat[]> => {
 	return chatsList;
 };
 
-export const getChatData = async (chatDocID: string): Promise<Chat> => {
-	const chatDoc = await getDoc(doc(db, "chats", chatDocID));
-	const chatMsgsData = chatDoc.data();
-	return chatMsgsData as Chat;
-};
-
 export const startChatWith = async (user1: AppUser, user2: AppUser) => {
+	// rn for only 2 users, i.e. a DM
 	const chatRef = collection(db, "chats");
 	console.log(user1.doc_id, user2.doc_id);
 	const chatDoc = await addDoc(chatRef, {
