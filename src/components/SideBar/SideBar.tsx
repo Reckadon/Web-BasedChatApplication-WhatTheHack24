@@ -4,7 +4,7 @@ import "./SideBar.css";
 import { findByUsername, getChatsList, startChatWith } from "../../utils/firestoreUtils";
 import { Chat } from "../../types/ChatList";
 
-const SideBar = ({ user }: { user: AppUser }) => {
+const SideBar = ({ user, onChangeChat }: { user: AppUser; onChangeChat: (chat: Chat) => void }) => {
 	const [search, setSearch] = useState<string>("");
 	const [searchPlaceholder, setSearchPlaceholder] = useState("search for a user");
 	const [chats, setChats] = useState<Chat[]>();
@@ -47,13 +47,17 @@ const SideBar = ({ user }: { user: AppUser }) => {
 				></input>
 			</div>
 			<div className="chats-list">
-				{chats?.map(chat => (
-					<div className="chat-item">
-						{chat.users.map(user => (
-							<div>{user}</div>
-						))}
-					</div>
-				))}
+				{chats?.map((chat, i) => {
+					const withOutSelf = chat.users.filter(u => u !== user.username); // exclude the current user
+					// const isDM = withOutSelf.length === 1; for checking if DM or group chat
+					return (
+						<div key={i} className="chat-item" onClick={() => onChangeChat(chat)}>
+							{withOutSelf.map((user, index) => (
+								<span key={index}>{user.split(" ").slice(0, 2).join(" ")} </span> // show first 2 words of username string
+							))}
+						</div>
+					);
+				})}
 			</div>
 			<div className="profile">
 				<span onClick={() => navigator.clipboard.writeText(user.username)}>{user.username}</span>

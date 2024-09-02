@@ -1,6 +1,5 @@
 div.sidebar {
 	height: 100%;
-	flex-grow: 1;
 	border-right: 1px dashed #bbbbbb;
 	display: flex;
 	flex-direction: column;

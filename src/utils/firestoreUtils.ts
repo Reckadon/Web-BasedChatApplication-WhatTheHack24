@@ -45,10 +45,16 @@ export const getChatsList = async (userDocID: string): Promise<Chat[]> => {
 					async (userDocID: string) => (await getDoc(doc(db, "users", userDocID))).data()!.username
 				)
 			);
-			return { users: chatUsernames };
+			return { users: chatUsernames, doc_id: chatID };
 		})
 	);
 	return chatsList;
+};
+
+export const getChatData = async (chatDocID: string): Promise<Chat> => {
+	const chatDoc = await getDoc(doc(db, "chats", chatDocID));
+	const chatMsgsData = chatDoc.data();
+	return chatMsgsData as Chat;
 };
 
 export const startChatWith = async (user1: AppUser, user2: AppUser) => {
