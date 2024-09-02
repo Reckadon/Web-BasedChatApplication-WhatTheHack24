@@ -4,12 +4,10 @@ import App from "./App.tsx";
 import "./index.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-import { config } from "./utils/secretConfig.json";
+import { config } from "./utils/secretConfig.json"; //secret file, not public - ask author for the same
 
 // Initialize Firebase
 const app = initializeApp(config);
-// Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
 createRoot(document.getElementById("root")!).render(
